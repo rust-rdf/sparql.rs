@@ -45,7 +45,13 @@ cargo add sparql
 ### Importing the Library
 
 ```rust
-use sparql::{algebra, engine};
+use sparql::{algebra, engine, parser};
+```
+
+### Parsing a SPARQL Query
+
+```rust
+let query = sparql::parse_query("SELECT * WHERE { ?s ?p ?o }").unwrap();
 ```
 
 ## 📚 Reference

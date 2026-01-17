@@ -22,12 +22,14 @@ all = [
     "algebra",
     "derive",
     "engine",
+    "parser",
 ]
 std = [
     "async-flow/std",
     "sparql-algebra?/std",
     "sparql-derive?/std",
     "sparql-engine?/std",
+    "sparql-parser?/std",
 ]
 unstable = []
 
@@ -35,6 +37,7 @@ unstable = []
 algebra = ["dep:sparql-algebra"]
 derive = ["dep:sparql-derive"]
 engine = ["dep:sparql-engine"]
+parser = ["dep:sparql-parser"]
 
 # Integrations:
 serde = []
@@ -44,6 +47,7 @@ async-flow.workspace = true
 sparql-algebra = { workspace = true, features = ["all"], optional = true }
 sparql-derive = { workspace = true, features = ["all"], optional = true }
 sparql-engine = { workspace = true, features = ["all"], optional = true }
+sparql-parser = { workspace = true, features = ["all"], optional = true }
 
 [dev-dependencies]
 tokio.workspace = true

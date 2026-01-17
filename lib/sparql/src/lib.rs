@@ -18,6 +18,12 @@ pub use sparql_derive as derive;
 #[cfg(feature = "engine")]
 pub use sparql_engine as engine;
 
+#[cfg(feature = "parser")]
+pub use sparql_parser as parser;
+
+#[cfg(feature = "parser")]
+pub use sparql_parser::{parse_query, parse_update};
+
 #[doc = include_str!("../../../README.md")]
 #[cfg(doctest)]
 pub struct ReadmeDoctests;

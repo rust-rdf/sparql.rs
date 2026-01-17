@@ -7,6 +7,7 @@ default-members = [
     "lib/sparql-algebra",
     "lib/sparql-derive",
     "lib/sparql-engine",
+    "lib/sparql-parser",
 ]
 resolver = "2"
 
@@ -30,8 +31,10 @@ sparql = { version = "0.0.0", default-features = false }
 sparql-algebra = { version = "0.0.0", default-features = false }
 sparql-derive = { version = "0.0.0", default-features = false }
 sparql-engine = { version = "0.0.0", default-features = false }
+sparql-parser = { version = "0.0.0", default-features = false }
 
 async-flow = { version = "0.0.2", default-features = false, features = ["tokio"] }
+spargebra = { version = "0.4", default-features = false, features = ["sparql-12"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]
@@ -40,3 +43,4 @@ sparql = { path = "lib/sparql" }
 sparql-algebra = { path = "lib/sparql-algebra" }
 sparql-derive = { path = "lib/sparql-derive" }
 sparql-engine = { path = "lib/sparql-engine" }
+sparql-parser = { path = "lib/sparql-parser" }

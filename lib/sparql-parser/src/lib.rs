@@ -9,4 +9,8 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
-pub use spargebra::{Query, Update};
+mod error;
+pub use error::*;
+
+mod parse;
+pub use parse::*;

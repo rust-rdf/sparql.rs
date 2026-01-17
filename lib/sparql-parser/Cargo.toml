@@ -1,7 +1,7 @@
 # See: https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-name = "sparql-algebra"
+name = "sparql-parser"
 version.workspace = true
 authors.workspace = true
 edition.workspace = true
