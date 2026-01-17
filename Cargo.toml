@@ -1,0 +1,42 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["lib/*"]
+default-members = [
+    "lib/sparql",
+    "lib/sparql-algebra",
+    "lib/sparql-derive",
+    "lib/sparql-engine",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.0.0"
+authors = ["Arto Bendiken"]
+edition = "2024"
+#rust-version = "1.85"
+description = "A dataflow implementation of the SPARQL graph query language."
+#documentation = "https://docs.rs/sparql"
+readme = true
+homepage = "https://sparql.rs"
+repository = "https://github.com/rust-rdf/sparql.rs"
+license = "Unlicense"
+keywords = ["sparql"]
+categories = ["asynchronous", "no-std"]
+publish = true
+
+[workspace.dependencies]
+sparql = { version = "0.0.0", default-features = false }
+sparql-algebra = { version = "0.0.0", default-features = false }
+sparql-derive = { version = "0.0.0", default-features = false }
+sparql-engine = { version = "0.0.0", default-features = false }
+
+async-flow = { version = "0.0.2", default-features = false, features = ["tokio"] }
+tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
+
+[patch.crates-io]
+#async-flow = { git = "https://github.com/artob/async-flow.git" }
+sparql = { path = "lib/sparql" }
+sparql-algebra = { path = "lib/sparql-algebra" }
+sparql-derive = { path = "lib/sparql-derive" }
+sparql-engine = { path = "lib/sparql-engine" }

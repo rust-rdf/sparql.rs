@@ -1,0 +1,49 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "sparql"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+#rust-version.workspace = true
+description.workspace = true
+#documentation.workspace = true
+readme.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
+publish.workspace = true
+
+[features]
+default = ["all", "std"]
+all = [
+    "algebra",
+    "derive",
+    "engine",
+]
+std = [
+    "async-flow/std",
+    "sparql-algebra?/std",
+    "sparql-derive?/std",
+    "sparql-engine?/std",
+]
+unstable = []
+
+# Features:
+algebra = ["dep:sparql-algebra"]
+derive = ["dep:sparql-derive"]
+engine = ["dep:sparql-engine"]
+
+# Integrations:
+serde = []
+
+[dependencies]
+async-flow.workspace = true
+sparql-algebra = { workspace = true, features = ["all"], optional = true }
+sparql-derive = { workspace = true, features = ["all"], optional = true }
+sparql-engine = { workspace = true, features = ["all"], optional = true }
+
+[dev-dependencies]
+tokio.workspace = true
