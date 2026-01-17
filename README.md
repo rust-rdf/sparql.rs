@@ -51,7 +51,7 @@ use sparql::{algebra, engine, parser};
 ### Parsing a SPARQL Query
 
 ```rust
-let query = sparql::parse_query("SELECT * WHERE { ?s ?p ?o }").unwrap();
+let query = sparql::parse("SELECT * WHERE { ?s ?p ?o }").expect("should be valid query");
 ```
 
 ## 📚 Reference
