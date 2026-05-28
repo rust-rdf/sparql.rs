@@ -24,13 +24,14 @@ for RDF knowledge graphs.**
 
 ## ✨ Features
 
+- 100% pure and safe Rust with minimal dependencies and no bloat.
 - Supports opting out of any feature using comprehensive feature flags.
 - Adheres to the Rust API Guidelines in its [naming conventions].
 - Cuts red tape: 100% free and unencumbered public domain software.
 
 ## 🛠️ Prerequisites
 
-- [Rust](https://rust-lang.org) 1.85+ (2024 edition)
+- [Rust] 1.85+ (2024 edition)
 
 ## ⬇️ Installation
 
@@ -38,6 +39,22 @@ for RDF knowledge graphs.**
 
 ```bash
 cargo add sparql
+```
+
+### Installation in `Cargo.toml`
+
+Enable all default features:
+
+```toml
+[dependencies]
+sparql = { version = "0.0" }
+```
+
+Enable only specific features:
+
+```toml
+[dependencies]
+sparql = { version = "0.0", default-features = false, features = ["serde"] }
 ```
 
 ## 👉 Examples
@@ -72,4 +89,8 @@ git clone https://github.com/rust-rdf/sparql.rs.git
 [![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/rust-rdf/sparql.rs)
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/rust-rdf/sparql.rs)
 
+[feature flags]: https://github.com/rust-rdf/sparql.rs/blob/master/lib/sparql/Cargo.toml
 [naming conventions]: https://rust-lang.github.io/api-guidelines/naming.html
+
+[RDF]: https://www.w3.org/TR/rdf12-concepts/
+[Rust]: https://rust-lang.org
