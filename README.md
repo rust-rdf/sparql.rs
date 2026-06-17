@@ -25,7 +25,7 @@ for RDF knowledge graphs.**
 ## ✨ Features
 
 - 100% pure and safe Rust with minimal dependencies and no bloat.
-- Supports opting out of any feature using comprehensive feature flags.
+- Supports opting out of any feature using comprehensive [feature flags].
 - Adheres to the Rust API Guidelines in its [naming conventions].
 - Cuts red tape: 100% free and unencumbered public domain software.
 
@@ -74,6 +74,28 @@ let query = sparql::parse("SELECT * WHERE { ?s ?p ?o }").expect("should be valid
 ## 📚 Reference
 
 [docs.rs/sparql](https://docs.rs/sparql)
+
+### Core Packages
+
+| Package | Crate | Docs |
+| :------ | :---- | :--- |
+| [sparql](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql#readme) | [![Package](https://img.shields.io/crates/v/sparql)](https://crates.io/crates/sparql) | [![Documentation](https://img.shields.io/docsrs/sparql?label=docs.rs)](https://docs.rs/sparql) |
+| [sparql-algebra](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-algebra#readme) | [![Package](https://img.shields.io/crates/v/sparql-algebra)](https://crates.io/crates/sparql-algebra) | [![Documentation](https://img.shields.io/docsrs/sparql-algebra?label=docs.rs)](https://docs.rs/sparql-algebra) |
+| [sparql-derive](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-derive#readme) | [![Package](https://img.shields.io/crates/v/sparql-derive)](https://crates.io/crates/sparql-derive) | [![Documentation](https://img.shields.io/docsrs/sparql-derive?label=docs.rs)](https://docs.rs/sparql-derive) |
+| [sparql-engine](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-engine#readme) | [![Package](https://img.shields.io/crates/v/sparql-engine)](https://crates.io/crates/sparql-engine) | [![Documentation](https://img.shields.io/docsrs/sparql-engine?label=docs.rs)](https://docs.rs/sparql-engine) |
+| [sparql-parser](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-parser#readme) | [![Package](https://img.shields.io/crates/v/sparql-parser)](https://crates.io/crates/sparql-parser) | [![Documentation](https://img.shields.io/docsrs/sparql-parser?label=docs.rs)](https://docs.rs/sparql-parser) |
+
+### Feature Flags
+
+#### Interoperability
+
+| Feature      | Version | Summary |
+| :----------- | :------ | :------ |
+| `datafusion` | 50.0    | Planned interop with Apache DataFusion and `rdf-fusion`
+| `oxrdf`      | 0.3     | Implements `From<T> for oxrdf::T`, `From<oxrdf::T> for T`
+| `rudof`      | 0.1     | Planned interop with `rudof`
+| `serde`      | 1.0     | Derives `serde::{Serialize, Deserialize}`
+| `sophia`     | 0.10    | Implements `From<T> for sophia::T`, `From<sophia::T> for T`
 
 ## 👨‍💻 Development
 
