@@ -24,6 +24,9 @@ pub use sparql_parser as parser;
 #[cfg(feature = "parser")]
 pub use sparql_parser::{parse, parse_query, parse_update};
 
+//#[cfg(feature = "store")]
+//pub use sparql_store as store;
+
 #[doc = include_str!("../../../README.md")]
 #[cfg(doctest)]
 pub struct ReadmeDoctests;

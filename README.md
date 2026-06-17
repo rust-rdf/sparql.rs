@@ -5,8 +5,8 @@
 [![Package](https://img.shields.io/crates/v/sparql)](https://crates.io/crates/sparql)
 [![Documentation](https://docs.rs/sparql/badge.svg)](https://docs.rs/sparql)
 
-**SPARQL.rs is a dataflow implementation of the SPARQL graph query language
-for RDF knowledge graphs.**
+**SPARQL.rs is a [dataflow] implementation of the [SPARQL] graph query
+language for [RDF] knowledge graphs.**
 
 > [!TIP]
 > 🚧 _We are building in public. This is presently under heavy construction._
@@ -62,7 +62,7 @@ sparql = { version = "0.0", default-features = false, features = ["serde"] }
 ### Importing the Library
 
 ```rust
-use sparql::{algebra, engine, parser};
+use sparql::{algebra, engine, parser, store};
 ```
 
 ### Parsing a SPARQL Query
@@ -84,6 +84,7 @@ let query = sparql::parse("SELECT * WHERE { ?s ?p ?o }").expect("should be valid
 | [sparql-derive](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-derive#readme) | [![Package](https://img.shields.io/crates/v/sparql-derive)](https://crates.io/crates/sparql-derive) | [![Documentation](https://img.shields.io/docsrs/sparql-derive?label=docs.rs)](https://docs.rs/sparql-derive) |
 | [sparql-engine](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-engine#readme) | [![Package](https://img.shields.io/crates/v/sparql-engine)](https://crates.io/crates/sparql-engine) | [![Documentation](https://img.shields.io/docsrs/sparql-engine?label=docs.rs)](https://docs.rs/sparql-engine) |
 | [sparql-parser](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-parser#readme) | [![Package](https://img.shields.io/crates/v/sparql-parser)](https://crates.io/crates/sparql-parser) | [![Documentation](https://img.shields.io/docsrs/sparql-parser?label=docs.rs)](https://docs.rs/sparql-parser) |
+| [sparql-store](https://github.com/rust-rdf/sparql.rs/tree/master/lib/sparql-store#readme) | [![Package](https://img.shields.io/crates/v/sparql-store)](https://crates.io/crates/sparql-store) | [![Documentation](https://img.shields.io/docsrs/sparql-store?label=docs.rs)](https://docs.rs/sparql-store) |
 
 ### Feature Flags
 
@@ -116,3 +117,5 @@ git clone https://github.com/rust-rdf/sparql.rs.git
 
 [RDF]: https://www.w3.org/TR/rdf12-concepts/
 [Rust]: https://rust-lang.org
+[SPARQL]: https://www.w3.org/TR/sparql12-query/
+[dataflow]: https://github.com/flux-doctrine/awesome-fbp
