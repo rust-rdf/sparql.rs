@@ -1,7 +1,54 @@
 // This is free and unencumbered software released into the public domain.
 
+use futures_util::Stream;
 use rdf_store::WriteTransaction;
 
 /// A read-write (R/W) transaction wrapper for SPARQL compatibility.
-#[allow(type_alias_bounds)]
-pub type SparqlWrite<T: WriteTransaction> = T;
+pub struct SparqlWrite<T: WriteTransaction>(T);
+
+impl<T: WriteTransaction> SparqlWrite<T> {
+    /// Wraps an RDF store transaction for SPARQL compatibility.
+    pub fn new(inner: impl Into<T>) -> Self {
+        Self(inner.into())
+    }
+}
+
+impl<T: WriteTransaction> WriteTransaction for SparqlWrite<T> {
+    type Error = T::Error;
+    type Term = T::Term;
+    type Statement = T::Statement;
+    type StatementPattern = T::StatementPattern;
+
+    fn rollback(self) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.rollback()
+    }
+
+    fn commit(self) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.commit()
+    }
+
+    fn clear(&mut self) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.clear()
+    }
+
+    fn insert(
+        &mut self,
+        statement: impl Into<Self::Statement> + Send,
+    ) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.insert(statement)
+    }
+
+    fn remove(
+        &mut self,
+        statement: impl Into<Self::Statement> + Send,
+    ) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.remove(statement)
+    }
+
+    fn delete(
+        &mut self,
+        pattern: impl Into<Self::StatementPattern> + Send,
+    ) -> impl Future<Output = Result<(), Self::Error>> {
+        self.0.delete(pattern)
+    }
+}

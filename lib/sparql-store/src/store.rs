@@ -23,6 +23,6 @@ impl<T: Store> Store for SparqlStore<T> {
     }
 
     async fn write(&mut self) -> Result<Self::Write, Self::Error> {
-        Ok(self.0.write().await?)
+        Ok(SparqlWrite::new(self.0.write().await?))
     }
 }
