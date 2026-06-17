@@ -49,6 +49,7 @@ sparopt = { version = "0.3", default-features = false, features = ["sparql-12"] 
 
 # Interoperability:
 async-flow = { version = "0.0.2", default-features = false, features = ["tokio"] }
+futures-util = "0.3"
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]

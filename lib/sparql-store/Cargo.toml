@@ -24,21 +24,24 @@ std = ["alloc", "rdf-model/std", "rdf-store/std"]
 unstable = []
 
 # Integrations:
-oxrdf = ["dep:oxrdf", "dep:spareval", "rdf-model/oxrdf", "rdf-store/oxrdf"]
+oxrdf = ["dep:oxrdf", "dep:spareval", "dep:spargebra", "rdf-model/oxrdf", "rdf-store/oxrdf"]
 
 [dependencies]
+futures-util.workspace = true
 rdf-model.workspace = true
 rdf-store.workspace = true
+tokio.workspace = true
 
 # Integrations:
 oxrdf = { workspace = true, optional = true }
 spareval = { workspace = true, optional = true }
+spargebra = { workspace = true, optional = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 
 [dev-dependencies]
-tokio.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
 spareval.workspace = true
 spargebra.workspace = true
