@@ -1,19 +1,20 @@
 // This is free and unencumbered software released into the public domain.
 
+use alloc::sync::Arc;
 use futures_util::Stream;
 use rdf_store::ReadTransaction;
 
 /// A read-only (R/O) transaction wrapper for SPARQL compatibility.
-pub struct SparqlRead<T: ReadTransaction>(T);
+pub struct SparqlRead<T: ReadTransaction + Send>(pub(crate) Arc<T>);
 
-impl<T: ReadTransaction> SparqlRead<T> {
+impl<T: ReadTransaction + Send> From<T> for SparqlRead<T> {
     /// Wraps an RDF store transaction for SPARQL compatibility.
-    pub fn new(inner: impl Into<T>) -> Self {
-        Self(inner.into())
+    fn from(inner: T) -> Self {
+        Self(Arc::new(inner))
     }
 }
 
-impl<T: ReadTransaction> ReadTransaction for SparqlRead<T> {
+impl<T: ReadTransaction + Send> ReadTransaction for SparqlRead<T> {
     type Error = T::Error;
     type Term = T::Term;
     type Statement = T::Statement;

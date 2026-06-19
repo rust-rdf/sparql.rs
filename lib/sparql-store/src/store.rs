@@ -1,6 +1,7 @@
 // This is free and unencumbered software released into the public domain.
 
 use crate::{SparqlRead, SparqlWrite};
+use alloc::sync::Arc;
 use rdf_store::Store;
 
 /// A SPARQL store that supports R/O and R/W transactions.
@@ -14,15 +15,18 @@ impl<T: Store> SparqlStore<T> {
     }
 
     pub async fn read(&mut self) -> Result<SparqlRead<T::Read>, T::Error> {
-        Ok(SparqlRead::new(self.0.read().await?))
+        Ok(SparqlRead::from(self.0.read().await?))
     }
 
     pub async fn write(&mut self) -> Result<SparqlWrite<T::Write>, T::Error> {
-        Ok(SparqlWrite::new(self.0.write().await?))
+        Ok(SparqlWrite::from(self.0.write().await?))
     }
 }
 
-impl<T: Store> Store for SparqlStore<T> {
+impl<T: Store + Send> Store for SparqlStore<T>
+where
+    <T as Store>::Read: Sync,
+{
     type Error = T::Error;
     type Read = SparqlRead<T::Read>;
     type Write = SparqlWrite<T::Write>;
