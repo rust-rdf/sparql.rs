@@ -1,16 +1,19 @@
 // This is free and unencumbered software released into the public domain.
 
-use alloc::sync::Arc;
-use futures_util::Stream;
 use rdf_store::WriteTransaction;
+use tokio::runtime::Handle;
 
 /// A read-write (R/W) transaction wrapper for SPARQL compatibility.
-pub struct SparqlWrite<T: WriteTransaction + Send>(pub(crate) T);
+#[derive(Debug)]
+pub struct SparqlWrite<T: WriteTransaction + Send> {
+    pub(crate) inner: T,
+    pub(crate) handle: Handle,
+}
 
-impl<T: WriteTransaction + Send> From<T> for SparqlWrite<T> {
+impl<T: WriteTransaction + Send> SparqlWrite<T> {
     /// Wraps an RDF store transaction for SPARQL compatibility.
-    fn from(inner: T) -> Self {
-        Self(inner)
+    pub fn new(inner: T, handle: Handle) -> Self {
+        Self { inner, handle }
     }
 }
 
@@ -21,35 +24,35 @@ impl<T: WriteTransaction + Send> WriteTransaction for SparqlWrite<T> {
     type StatementPattern = T::StatementPattern;
 
     fn rollback(self) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.rollback()
+        self.inner.rollback()
     }
 
     fn commit(self) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.commit()
+        self.inner.commit()
     }
 
     fn clear(&mut self) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.clear()
+        self.inner.clear()
     }
 
     fn insert(
         &mut self,
         statement: impl Into<Self::Statement> + Send,
     ) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.insert(statement)
+        self.inner.insert(statement)
     }
 
     fn remove(
         &mut self,
         statement: impl Into<Self::Statement> + Send,
     ) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.remove(statement)
+        self.inner.remove(statement)
     }
 
     fn delete(
         &mut self,
         pattern: impl Into<Self::StatementPattern> + Send,
     ) -> impl Future<Output = Result<(), Self::Error>> {
-        self.0.delete(pattern)
+        self.inner.delete(pattern)
     }
 }

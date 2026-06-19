@@ -30,7 +30,7 @@ oxrdf = ["dep:oxrdf", "dep:spareval", "dep:spargebra", "rdf-model/oxrdf", "rdf-s
 futures-util.workspace = true
 rdf-model.workspace = true
 rdf-store.workspace = true
-tokio.workspace = true
+tokio = { workspace = true, features = ["rt", "rt-multi-thread"] }
 
 # Integrations:
 oxrdf = { workspace = true, optional = true }

@@ -1,25 +1,37 @@
 // This is free and unencumbered software released into the public domain.
 
 use crate::{SparqlRead, SparqlWrite};
-use alloc::sync::Arc;
 use rdf_store::Store;
+use tokio::runtime::Handle;
 
 /// A SPARQL store that supports R/O and R/W transactions.
 #[derive(Debug)]
-pub struct SparqlStore<T: Store>(T);
+pub struct SparqlStore<T: Store> {
+    pub(crate) inner: T,
+    pub(crate) handle: Handle,
+}
 
 impl<T: Store> SparqlStore<T> {
     /// Wraps an RDF quad store for SPARQL compatibility.
-    pub fn new(inner: impl Into<T>) -> Self {
-        Self(inner.into())
+    pub fn new(inner: impl Into<T>, handle: Handle) -> Self {
+        Self {
+            inner: inner.into(),
+            handle,
+        }
     }
 
     pub async fn read(&mut self) -> Result<SparqlRead<T::Read>, T::Error> {
-        Ok(SparqlRead::from(self.0.read().await?))
+        Ok(SparqlRead::new(
+            self.inner.read().await?,
+            self.handle.clone(),
+        ))
     }
 
     pub async fn write(&mut self) -> Result<SparqlWrite<T::Write>, T::Error> {
-        Ok(SparqlWrite::from(self.0.write().await?))
+        Ok(SparqlWrite::new(
+            self.inner.write().await?,
+            self.handle.clone(),
+        ))
     }
 }
 
