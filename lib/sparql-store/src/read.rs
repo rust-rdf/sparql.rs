@@ -1,7 +1,7 @@
 // This is free and unencumbered software released into the public domain.
 
 use alloc::sync::Arc;
-use futures_util::Stream;
+use futures::Stream;
 use rdf_store::ReadTransaction;
 use tokio::runtime::Handle;
 
@@ -9,6 +9,7 @@ use tokio::runtime::Handle;
 #[derive(Debug)]
 pub struct SparqlRead<T: ReadTransaction + Send> {
     pub(crate) inner: Arc<T>,
+    #[allow(dead_code)]
     pub(crate) handle: Handle,
 }
 

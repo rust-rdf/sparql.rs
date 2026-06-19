@@ -49,8 +49,11 @@ sparopt = { version = "0.3", default-features = false, features = ["sparql-12"] 
 
 # Interoperability:
 async-flow = { version = "0.0.2", default-features = false, features = ["tokio"] }
-futures-util = "0.3"
-tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
+futures = { version = "0.3", default-features = false }
+futures-util = { version = "0.3", default-features = false }
+tokio = { version = "1", default-features = false, features = ["macros", "rt", "sync"] }
+tokio-stream = { version = "0.1", default-features = false }
+tokio-util = { version = "0.7", default-features = false }
 
 [patch.crates-io]
 #async-flow = { git = "https://github.com/artob/async-flow.git" }

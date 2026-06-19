@@ -7,6 +7,7 @@ use tokio::runtime::Handle;
 #[derive(Debug)]
 pub struct SparqlWrite<T: WriteTransaction + Send> {
     pub(crate) inner: T,
+    #[allow(dead_code)]
     pub(crate) handle: Handle,
 }
 
