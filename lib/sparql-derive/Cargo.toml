@@ -27,3 +27,8 @@ unstable = []
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
 [target.'cfg(target_family = "wasm")'.dependencies]
+
+# Preview locally with: RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --all-features
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

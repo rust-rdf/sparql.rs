@@ -3,6 +3,7 @@
 #![no_std]
 #![forbid(unsafe_code)]
 //#![allow(unused)]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 extern crate alloc;
 
