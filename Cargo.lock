@@ -30,12 +30,13 @@ checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
 
 [[package]]
 name = "async-flow"
-version = "0.0.2"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f91d4d6f4c70751830dff03a7b03b006dafa5221b26b644b169c5e9b9c898ed2"
+checksum = "d9301d32b149afa29350111fdb6941b7fbb8d525aa934b24b77571050999e413"
 dependencies = [
  "async-trait",
  "dogma",
+ "replace_with",
  "thiserror",
  "tokio",
 ]
@@ -864,6 +865,12 @@ checksum = "71fe3824f5629716b1589be05dacd749f6aa084c87e00e016714a8cdfccc997c"
 dependencies = [
  "bytecheck",
 ]
+
+[[package]]
+name = "replace_with"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "51743d3e274e2b18df81c4dc6caf8a5b8e15dbe799e0dca05c7617380094e884"
 
 [[package]]
 name = "rkyv"
