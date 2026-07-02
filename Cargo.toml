@@ -48,7 +48,7 @@ spargebra = { version = "0.4", default-features = false, features = ["sparql-12"
 sparopt = { version = "0.3", default-features = false, features = ["sparql-12"] }
 
 # Interoperability:
-async-flow = { version = "0.0.2", default-features = false, features = ["tokio"] }
+async-flow = { version = "0.1.5", default-features = false, features = ["tokio"] }
 futures = { version = "0.3", default-features = false }
 futures-util = { version = "0.3", default-features = false }
 known-languages = { version = "0.0", default-features = false }
